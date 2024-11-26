@@ -1,8 +1,6 @@
 #ifndef _MY_UTILITY_MOVE_H
 #define _MY_UTILITY_MOVE_H
 
-#include <__config>
-
 #include "type_traits/remove_reference.h"
 
 namespace my {

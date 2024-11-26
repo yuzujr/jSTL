@@ -1,8 +1,6 @@
 #ifndef _MY_TYPE_TRAITS_REMOVE_CONST_H
 #define _MY_TYPE_TRAITS_REMOVE_CONST_H
 
-#include <__config>
-
 namespace my {
 
 template <class Tp>

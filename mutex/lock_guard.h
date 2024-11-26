@@ -1,8 +1,6 @@
 #ifndef _MY_MUTEX_LOCK_GUARD_H
 #define _MY_MUTEX_LOCK_GUARD_H
 
-#include <__config>
-
 #include "mutex/tag_types.h"
 
 namespace my {

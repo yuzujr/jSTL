@@ -1,8 +1,6 @@
 #ifndef _MY_TYPE_TRAITS_ENABLE_IF_H
 #define _MY_TYPE_TRAITS_ENABLE_IF_H
 
-#include <__config>
-
 namespace my {
 
 template <bool, class Tp = void>

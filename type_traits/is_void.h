@@ -1,8 +1,6 @@
 #ifndef _MY_TYPE_TRAITS_IS_VOID_H
 #define _MY_TYPE_TRAITS_IS_VOID_H
 
-#include <__config>
-
 #include "type_traits/integral_constant.h"
 #include "type_traits/is_same.h"
 #include "type_traits/remove_cv.h"

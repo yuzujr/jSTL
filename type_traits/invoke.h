@@ -3,12 +3,11 @@
 
 #include <__utility/declval.h>  //todo...
 
-#include <__config>
-
 #include "type_traits/enable_if.h"
 #include "type_traits/integral_constant.h"
 #include "type_traits/is_void.h"
 #include "type_traits/nat.h"
+
 
 namespace my {
 

@@ -1,8 +1,6 @@
 #ifndef _MY_UTILITY_EXCHANGE_H
 #define _MY_UTILITY_EXCHANGE_H
 
-#include <__config>
-
 #include "type_traits/is_nothrow_assignable.h"
 #include "type_traits/is_nothrow_constructible.h"
 #include "utility/forward.h"

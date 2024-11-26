@@ -1,7 +1,6 @@
 #ifndef _MY_MUTEX
 #define _MY_MUTEX
 
-#include <__config>
 #include <mutex>  //cannot do: lock
 
 #include "mutex/lock_guard.h"

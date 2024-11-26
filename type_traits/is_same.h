@@ -1,8 +1,6 @@
 #ifndef _MY_TYPE_TRAITS_IS_SAME_H
 #define _MY_TYPE_TRAITS_IS_SAME_H
 
-#include <__config>
-
 #include "type_traits/integral_constant.h"
 
 namespace my {

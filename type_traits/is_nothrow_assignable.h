@@ -1,8 +1,6 @@
 #ifndef _MY_TYPE_TRAITS_IS_NOTHROW_ASSIGNABLE_H
 #define _MY_TYPE_TRAITS_IS_NOTHROW_ASSIGNABLE_H
 
-#include <__config>
-
 #include "type_traits/add_lvalue_reference.h"
 #include "type_traits/add_rvalue_reference.h"
 #include "type_traits/integral_constant.h"

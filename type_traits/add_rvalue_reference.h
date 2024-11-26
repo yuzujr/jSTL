@@ -1,8 +1,6 @@
 #ifndef _MY_TYPE_TRAITS_ADD_RVALUE_REFERENCE_H
 #define _MY_TYPE_TRAITS_ADD_RVALUE_REFERENCE_H
 
-#include <__config>
-
 #include "type_traits/is_referenceable.h"
 
 namespace my {

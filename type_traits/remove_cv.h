@@ -1,8 +1,6 @@
 #ifndef _MY_TYPE_TRAITS_REMOVE_CV_H
 #define _MY_TYPE_TRAITS_REMOVE_CV_H
 
-#include <__config>
-
 #include "type_traits/remove_const.h"
 #include "type_traits/remove_volatile.h"
 

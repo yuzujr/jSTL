@@ -1,8 +1,6 @@
 #ifndef _MY_TYPE_TRAITS_NAT_H
 #define _MY_TYPE_TRAITS_NAT_H
 
-#include <__config>
-
 namespace my {
 
 struct _nat {

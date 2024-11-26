@@ -1,8 +1,6 @@
 #ifndef _MY_FUNCTIONAL_INVOKE_H
 #define _MY_FUNCTIONAL_INVOKE_H
 
-#include <__config>
-
 #include "type_traits/invoke.h"
 #include "utility/forward.h"
 

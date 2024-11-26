@@ -1,8 +1,6 @@
 #ifndef _MY_UTILITY_FORWARD_H
 #define _MY_UTILITY_FORWARD_H
 
-#include <__config>
-
 #include "type_traits/is_reference.h"
 #include "type_traits/remove_reference.h"
 
