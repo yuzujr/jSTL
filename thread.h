@@ -8,10 +8,15 @@
 #include <stdexcept>
 #include <utility>
 
-#include "utility.h"
-#include "functional.h"
+#include "functional/invoke.h"
+#include "type_traits/decay.h"
+#include "type_traits/enable_if.h"
+#include "type_traits/remove_cvref.h"
+#include "type_traits/is_same.h"
+#include "utility/exchange.h"
+#include "utility/forward.h"
+#include "utility/move.h"
 
-// todo:jSTL化
 
 namespace my {
 
@@ -51,12 +56,11 @@ public:
     // 有参构造
     template <
         class Fn, class... Args,
-        std::enable_if_t<!std::is_same_v<std::remove_cvref_t<Fn>, my::thread>,
+        enable_if_t<!is_same_v<remove_cvref_t<Fn>, my::thread>,
                          int> = 0>  // Fn不能是thread类型
     explicit thread(Fn&& fn, Args&&... args) {
-        _start(
-            std::forward<Fn>(fn),
-            std::forward<Args>(args)...);  // 完美转发到_start函数完成真正的工作
+        _start(forward<Fn>(fn),
+               forward<Args>(args)...);  // 完美转发到_start函数完成真正的工作
     }
 
     // 析构函数
@@ -104,7 +108,7 @@ private:
     static unsigned int _invoke(void* _rawVals) noexcept {
         const std::unique_ptr<_tuple> _fnVals{static_cast<_tuple*>(_rawVals)};
         _tuple& _tup = *_fnVals.get();
-        invoke(std::move(std::get<_indices>(_tup))...);
+        invoke(move(std::get<_indices>(_tup))...);
         return 0;
     }
 
@@ -116,10 +120,10 @@ private:
 
     template <class Fn, class... Args>
     void _start(Fn&& fn, Args&&... args) {
-        using _tuple = std::tuple<std::decay_t<Fn>, std::decay_t<Args>...>;
+        using _tuple = std::tuple<decay_t<Fn>, decay_t<Args>...>;
 
-        std::unique_ptr<_tuple> _decay_copied = std::make_unique<_tuple>(
-            std::forward<Fn>(fn), std::forward<Args>(args)...);
+        std::unique_ptr<_tuple> _decay_copied =
+            std::make_unique<_tuple>(forward<Fn>(fn), forward<Args>(args)...);
 
         constexpr auto _invoker_proc = this->_get_invoke<_tuple>(
             std::make_index_sequence<1 + sizeof...(Args)>{});
