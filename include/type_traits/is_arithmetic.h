@@ -6,7 +6,7 @@
 #include "type_traits/is_integral.h"
 
 namespace jstl {
-    
+
 template <class Tp>
 struct is_arithmetic
     : integral_constant<bool, is_integral<Tp>::value ||

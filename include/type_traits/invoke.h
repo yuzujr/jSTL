@@ -33,8 +33,7 @@ struct _invokable_r {
     template <class, class>
     static auto _test_ret(...) -> false_type;
 
-    static constexpr bool _is_invocable =
-        !is_same<_result, _nat>::value;
+    static constexpr bool _is_invocable = !is_same<_result, _nat>::value;
     static constexpr bool _is_returnable =
         is_void<Ret>::value || decltype(_test_ret<Ret, _result>(0))::value;
 

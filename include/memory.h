@@ -3,5 +3,6 @@
 
 #include "memory/addressof.h"
 #include "memory/allocator.h"
+#include "memory/uninitialized_algorithms.h"
 
 #endif

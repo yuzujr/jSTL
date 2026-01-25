@@ -1,6 +1,7 @@
 #ifndef _JSTL_UTILITY
 #define _JSTL_UTILITY
 
+#include "utility/convert_to_integral.h"
 #include "utility/declval.h"
 #include "utility/exchange.h"
 #include "utility/forward.h"

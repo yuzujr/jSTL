@@ -1,7 +1,9 @@
+#ifndef _JSTL_TUPLE_H
+#define _JSTL_TUPLE_H
 
 #include <cstddef>
 #include <tuple>    //todo:tuple
-#include <utility>  //cannot do:index_sequence
+#include <utility>  //todo:index_sequence
 
 #include "functional/invoke.h"
 #include "type_traits/remove_reference.h"
@@ -25,3 +27,5 @@ constexpr decltype(auto) apply(Callable&& obj, Tuple&& tuple) {
 }
 
 }  // namespace jstl
+
+#endif

@@ -8,9 +8,9 @@
 #include <pthread.h>
 #endif
 
+#include <cstddef>
 #include <iostream>
 #include <memory>
-#include <cstddef>
 
 #include "functional/invoke.h"
 #include "type_traits/decay.h"

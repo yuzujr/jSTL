@@ -17,9 +17,8 @@ inline constexpr bool is_trivially_constructible_v =
 
 template <class Tp>
 struct is_trivially_copy_constructible
-    : integral_constant<
-          bool, __is_trivially_constructible(
-                    Tp, add_lvalue_reference_t<const Tp>)> {};
+    : integral_constant<bool, __is_trivially_constructible(
+                                  Tp, add_lvalue_reference_t<const Tp>)> {};
 
 template <class Tp>
 inline constexpr bool is_trivially_copy_constructible_v =

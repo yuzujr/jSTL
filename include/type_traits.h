@@ -15,6 +15,7 @@
 #include "type_traits/is_class.h"
 #include "type_traits/is_const.h"
 #include "type_traits/is_constructible.h"
+#include "type_traits/is_convertible.h"
 #include "type_traits/is_enum.h"
 #include "type_traits/is_floating_point.h"
 #include "type_traits/is_function.h"
@@ -44,6 +45,7 @@
 #include "type_traits/remove_extent.h"
 #include "type_traits/remove_reference.h"
 #include "type_traits/remove_volatile.h"
+#include "type_traits/underlying_type.h"
 #include "type_traits/void_t.h"
 
 #endif

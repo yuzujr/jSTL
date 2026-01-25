@@ -27,9 +27,10 @@ inline constexpr bool is_trivially_copy_assignable_v =
 
 template <class Tp>
 struct is_trivially_move_assignable
-    : integral_constant<bool, __is_trivially_assignable(
-                                  add_lvalue_reference_t<Tp>,
-                                  add_rvalue_reference_t<Tp>)> {};
+    : integral_constant<bool,
+                        __is_trivially_assignable(add_lvalue_reference_t<Tp>,
+                                                  add_rvalue_reference_t<Tp>)> {
+};
 
 template <class Tp>
 inline constexpr bool is_trivially_move_assignable_v =
