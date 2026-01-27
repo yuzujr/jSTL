@@ -22,11 +22,6 @@ or `xmake`:
 xmake
 ```
 
-## test
-```
-./build/test_*
-```
-
 ## Reference
 1. [libc++](https://libcxx.llvm.org/)
 2. [cppreference](https://en.cppreference.com/)
