@@ -7,6 +7,9 @@ template <class Tp, Tp Val>
 struct integral_constant {
     static constexpr Tp value = Val;
     typedef Tp value_type;
+    // injected class name, equivalent to
+    // `typedef integral_constant<Tp, Val> integral_constant`;
+    // see [https://en.cppreference.com/w/cpp/language/injected-class-name.html]
     typedef integral_constant type;
     constexpr operator value_type() const noexcept {
         return value;

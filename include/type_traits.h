@@ -1,11 +1,12 @@
-#ifndef _JSTL_TYPE_TRAITS
-#define _JSTL_TYPE_TRAITS
+#ifndef _JSTL_TYPE_TRAITS_H
+#define _JSTL_TYPE_TRAITS_H
 
 #include "type_traits/add_lvalue_reference.h"
 #include "type_traits/add_pointer.h"
 #include "type_traits/add_rvalue_reference.h"
 #include "type_traits/conditional.h"
 #include "type_traits/decay.h"
+#include "type_traits/detected_or.h"
 #include "type_traits/enable_if.h"
 #include "type_traits/integral_constant.h"
 #include "type_traits/invoke.h"
@@ -16,6 +17,7 @@
 #include "type_traits/is_const.h"
 #include "type_traits/is_constructible.h"
 #include "type_traits/is_convertible.h"
+#include "type_traits/is_empty.h"
 #include "type_traits/is_enum.h"
 #include "type_traits/is_floating_point.h"
 #include "type_traits/is_function.h"

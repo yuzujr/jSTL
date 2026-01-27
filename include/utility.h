@@ -1,5 +1,5 @@
-#ifndef _JSTL_UTILITY
-#define _JSTL_UTILITY
+#ifndef _JSTL_UTILITY_H
+#define _JSTL_UTILITY_H
 
 #include "utility/convert_to_integral.h"
 #include "utility/declval.h"
