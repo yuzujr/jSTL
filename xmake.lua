@@ -22,3 +22,8 @@ target("test_thread")
     set_kind("binary")
     add_files("test/test_thread.cpp")
     add_deps("jSTL")
+
+target("test_vector")
+    set_kind("binary")
+    add_files("test/test_vector.cpp")
+    add_deps("jSTL")

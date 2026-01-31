@@ -19,6 +19,7 @@
 #include "type_traits/is_convertible.h"
 #include "type_traits/is_empty.h"
 #include "type_traits/is_enum.h"
+#include "type_traits/is_final.h"
 #include "type_traits/is_floating_point.h"
 #include "type_traits/is_function.h"
 #include "type_traits/is_integral.h"

@@ -18,3 +18,6 @@ target_link_libraries(test_headers jSTL)
 
 add_executable(test_thread test/test_thread.cpp)
 target_link_libraries(test_thread jSTL)
+
+add_executable(test_vector test/test_vector.cpp)
+target_link_libraries(test_vector jSTL)
