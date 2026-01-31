@@ -47,8 +47,7 @@ template <class _Tp>
 struct __enum_underlying_type<_Tp, false> {};
 
 template <class _Tp>
-inline typename __enum_underlying_type<_Tp>::promoted_type
-__convert_to_integral(_Tp val) {
+inline typename __enum_underlying_type<_Tp>::promoted_type __convert_to_integral(_Tp val) {
     return val;
 }
 

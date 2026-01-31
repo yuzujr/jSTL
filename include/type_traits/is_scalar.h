@@ -13,8 +13,7 @@ namespace jstl {
 template <class Tp>
 struct is_scalar
     : integral_constant<bool, is_arithmetic<Tp>::value || is_enum<Tp>::value ||
-                                  is_pointer<Tp>::value ||
-                                  is_member_pointer<Tp>::value ||
+                                  is_pointer<Tp>::value || is_member_pointer<Tp>::value ||
                                   is_null_pointer<Tp>::value> {};
 
 template <class Tp>

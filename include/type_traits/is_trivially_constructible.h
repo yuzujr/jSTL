@@ -12,13 +12,12 @@ struct is_trivially_constructible
     : integral_constant<bool, __is_trivially_constructible(Tp, Args...)> {};
 
 template <class Tp, class... Args>
-inline constexpr bool is_trivially_constructible_v =
-    __is_trivially_constructible(Tp, Args...);
+inline constexpr bool is_trivially_constructible_v = __is_trivially_constructible(Tp, Args...);
 
 template <class Tp>
 struct is_trivially_copy_constructible
-    : integral_constant<bool, __is_trivially_constructible(
-                                  Tp, add_lvalue_reference_t<const Tp>)> {};
+    : integral_constant<bool, __is_trivially_constructible(Tp, add_lvalue_reference_t<const Tp>)> {
+};
 
 template <class Tp>
 inline constexpr bool is_trivially_copy_constructible_v =
@@ -26,8 +25,7 @@ inline constexpr bool is_trivially_copy_constructible_v =
 
 template <class Tp>
 struct is_trivially_move_constructible
-    : integral_constant<bool, __is_trivially_constructible(
-                                  Tp, add_rvalue_reference_t<Tp>)> {};
+    : integral_constant<bool, __is_trivially_constructible(Tp, add_rvalue_reference_t<Tp>)> {};
 
 template <class Tp>
 inline constexpr bool is_trivially_move_constructible_v =

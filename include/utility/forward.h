@@ -7,16 +7,13 @@
 namespace jstl {
 
 template <class Tp>
-[[nodiscard]] inline constexpr Tp&& forward(
-    remove_reference_t<Tp>& t) noexcept {
+[[nodiscard]] inline constexpr Tp&& forward(remove_reference_t<Tp>& t) noexcept {
     return static_cast<Tp&&>(t);
 }
 
 template <class Tp>
-[[nodiscard]] inline constexpr Tp&& forward(
-    remove_reference_t<Tp>&& t) noexcept {
-    static_assert(!is_lvalue_reference_v<Tp>,
-                  "cannot forward an rvalue as an lvalue");
+[[nodiscard]] inline constexpr Tp&& forward(remove_reference_t<Tp>&& t) noexcept {
+    static_assert(!is_lvalue_reference_v<Tp>, "cannot forward an rvalue as an lvalue");
     return static_cast<Tp&&>(t);
 }
 

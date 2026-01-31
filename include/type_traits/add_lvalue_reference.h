@@ -25,8 +25,7 @@ struct add_lvalue_reference {
 };
 
 template <class Tp>
-using add_lvalue_reference_t =
-    typename detail::_add_lvalue_reference_impl<Tp>::type;
+using add_lvalue_reference_t = typename detail::_add_lvalue_reference_impl<Tp>::type;
 
 }  // namespace jstl
 

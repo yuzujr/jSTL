@@ -6,12 +6,10 @@
 namespace jstl {
 
 template <class Tp>
-struct is_trivially_copyable
-    : integral_constant<bool, __is_trivially_copyable(Tp)> {};
+struct is_trivially_copyable : integral_constant<bool, __is_trivially_copyable(Tp)> {};
 
 template <class Tp>
-inline constexpr bool is_trivially_copyable_v =
-    is_trivially_copyable<Tp>::value;
+inline constexpr bool is_trivially_copyable_v = is_trivially_copyable<Tp>::value;
 
 }  // namespace jstl
 

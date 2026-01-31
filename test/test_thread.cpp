@@ -250,12 +250,10 @@ void test_thread_performance(TestFramework& framework) {
         }
 
         auto end = std::chrono::high_resolution_clock::now();
-        auto duration =
-            std::chrono::duration_cast<std::chrono::milliseconds>(end - start)
-                .count();
+        auto duration = std::chrono::duration_cast<std::chrono::milliseconds>(end - start).count();
 
-        std::cout << "    Created and joined " << num_threads << " threads in "
-                  << duration << " ms\n";
+        std::cout << "    Created and joined " << num_threads << " threads in " << duration
+                  << " ms\n";
         ASSERT_TRUE(true);
     });
 }

@@ -67,8 +67,7 @@ public:
         }
 
         auto end = std::chrono::high_resolution_clock::now();
-        double duration_ms =
-            std::chrono::duration<double, std::milli>(end - start).count();
+        double duration_ms = std::chrono::duration<double, std::milli>(end - start).count();
 
         results_.push_back({test_name, passed, message, duration_ms});
         stats_.total++;
@@ -99,8 +98,7 @@ public:
             std::cout << "\nFailed Tests:\n";
             for (const auto& result : results_) {
                 if (!result.passed) {
-                    std::cout << "  - " << result.name << ": " << result.message
-                              << "\n";
+                    std::cout << "  - " << result.name << ": " << result.message << "\n";
                 }
             }
         }
@@ -123,52 +121,48 @@ public:
 };
 
 // 断言宏
-#define ASSERT_TRUE(condition)                                       \
-    do {                                                             \
-        if (!(condition)) {                                          \
-            std::ostringstream oss;                                  \
-            oss << "Assertion failed: " << #condition << " at line " \
-                << __LINE__;                                         \
-            throw std::runtime_error(oss.str());                     \
-        }                                                            \
+#define ASSERT_TRUE(condition)                                                    \
+    do {                                                                          \
+        if (!(condition)) {                                                       \
+            std::ostringstream oss;                                               \
+            oss << "Assertion failed: " << #condition << " at line " << __LINE__; \
+            throw std::runtime_error(oss.str());                                  \
+        }                                                                         \
     } while (0)
 
 #define ASSERT_FALSE(condition) ASSERT_TRUE(!(condition))
 
-#define ASSERT_EQ(a, b)                                                      \
-    do {                                                                     \
-        if (!((a) == (b))) {                                                 \
-            std::ostringstream oss;                                          \
-            oss << "Assertion failed: " << #a << " == " << #b << " at line " \
-                << __LINE__;                                                 \
-            throw std::runtime_error(oss.str());                             \
-        }                                                                    \
+#define ASSERT_EQ(a, b)                                                                   \
+    do {                                                                                  \
+        if (!((a) == (b))) {                                                              \
+            std::ostringstream oss;                                                       \
+            oss << "Assertion failed: " << #a << " == " << #b << " at line " << __LINE__; \
+            throw std::runtime_error(oss.str());                                          \
+        }                                                                                 \
     } while (0)
 
-#define ASSERT_NE(a, b)                                                      \
-    do {                                                                     \
-        if (!((a) != (b))) {                                                 \
-            std::ostringstream oss;                                          \
-            oss << "Assertion failed: " << #a << " != " << #b << " at line " \
-                << __LINE__;                                                 \
-            throw std::runtime_error(oss.str());                             \
-        }                                                                    \
+#define ASSERT_NE(a, b)                                                                   \
+    do {                                                                                  \
+        if (!((a) != (b))) {                                                              \
+            std::ostringstream oss;                                                       \
+            oss << "Assertion failed: " << #a << " != " << #b << " at line " << __LINE__; \
+            throw std::runtime_error(oss.str());                                          \
+        }                                                                                 \
     } while (0)
 
-#define ASSERT_THROW(expression, exception_type)            \
-    do {                                                    \
-        bool caught = false;                                \
-        try {                                               \
-            expression;                                     \
-        } catch (const exception_type&) {                   \
-            caught = true;                                  \
-        }                                                   \
-        if (!caught) {                                      \
-            std::ostringstream oss;                         \
-            oss << "Expected exception " << #exception_type \
-                << " not thrown at line " << __LINE__;      \
-            throw std::runtime_error(oss.str());            \
-        }                                                   \
+#define ASSERT_THROW(expression, exception_type)                                                   \
+    do {                                                                                           \
+        bool caught = false;                                                                       \
+        try {                                                                                      \
+            expression;                                                                            \
+        } catch (const exception_type&) {                                                          \
+            caught = true;                                                                         \
+        }                                                                                          \
+        if (!caught) {                                                                             \
+            std::ostringstream oss;                                                                \
+            oss << "Expected exception " << #exception_type << " not thrown at line " << __LINE__; \
+            throw std::runtime_error(oss.str());                                                   \
+        }                                                                                          \
     } while (0)
 
 }  // namespace test

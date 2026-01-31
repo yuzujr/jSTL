@@ -9,31 +9,25 @@ namespace jstl {
 
 template <class Tp, class... _Args>
 struct is_nothrow_constructible
-    : public integral_constant<bool, __is_nothrow_constructible(Tp, _Args...)> {
-};
+    : public integral_constant<bool, __is_nothrow_constructible(Tp, _Args...)> {};
 
 template <class Tp, class... _Args>
-inline constexpr bool is_nothrow_constructible_v =
-    is_nothrow_constructible<Tp, _Args...>::value;
+inline constexpr bool is_nothrow_constructible_v = is_nothrow_constructible<Tp, _Args...>::value;
 
 template <class Tp>
 struct is_nothrow_copy_constructible
     : public integral_constant<bool,
-                               __is_nothrow_constructible(
-                                   Tp, add_lvalue_reference_t<const Tp>)> {};
+                               __is_nothrow_constructible(Tp, add_lvalue_reference_t<const Tp>)> {};
 
 template <class Tp>
-inline constexpr bool is_nothrow_copy_constructible_v =
-    is_nothrow_copy_constructible<Tp>::value;
+inline constexpr bool is_nothrow_copy_constructible_v = is_nothrow_copy_constructible<Tp>::value;
 
 template <class Tp>
 struct is_nothrow_move_constructible
-    : public integral_constant<bool, __is_nothrow_constructible(
-                                         Tp, add_rvalue_reference_t<Tp>)> {};
+    : public integral_constant<bool, __is_nothrow_constructible(Tp, add_rvalue_reference_t<Tp>)> {};
 
 template <class Tp>
-inline constexpr bool is_nothrow_move_constructible_v =
-    is_nothrow_move_constructible<Tp>::value;
+inline constexpr bool is_nothrow_move_constructible_v = is_nothrow_move_constructible<Tp>::value;
 
 template <class Tp>
 struct is_nothrow_default_constructible

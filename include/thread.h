@@ -65,8 +65,7 @@ public:
                           int> = 0>  // Fn不能是thread类型
     explicit thread(Fn&& fn, Args&&... args) {
         _start(forward<Fn>(fn),
-               jstl::forward<Args>(
-                   args)...);  // 完美转发到_start函数完成真正的工作
+               jstl::forward<Args>(args)...);  // 完美转发到_start函数完成真正的工作
     }
 
     // 析构函数
@@ -112,8 +111,7 @@ public:
     friend bool operator==(const thread& left, const thread& right) noexcept;
 
     template <class Ch, class Tr>
-    friend auto operator<<(std::basic_ostream<Ch, Tr>& stream,
-                           const thread& th);
+    friend auto operator<<(std::basic_ostream<Ch, Tr>& stream, const thread& th);
 
 private:
 #ifdef _WIN32
@@ -156,21 +154,19 @@ private:
     void _start(Fn&& fn, Args&&... args) {
         using _tuple = std::tuple<decay_t<Fn>, decay_t<Args>...>;
 
-        std::unique_ptr<_tuple> _decay_copied = std::make_unique<_tuple>(
-            jstl::forward<Fn>(fn), jstl::forward<Args>(args)...);
+        std::unique_ptr<_tuple> _decay_copied =
+            std::make_unique<_tuple>(jstl::forward<Fn>(fn), jstl::forward<Args>(args)...);
 
-        auto _invoker_proc = _get_invoke<_tuple>(
-            std::make_index_sequence<1 + sizeof...(Args)>{});
+        auto _invoker_proc = _get_invoke<_tuple>(std::make_index_sequence<1 + sizeof...(Args)>{});
 
         bool created = false;
 #ifdef _WIN32
-        _thr._handle = reinterpret_cast<void*>(_beginthreadex(
-            nullptr, 0, _invoker_proc, _decay_copied.get(), 0, &_thr._id));
+        _thr._handle = reinterpret_cast<void*>(
+            _beginthreadex(nullptr, 0, _invoker_proc, _decay_copied.get(), 0, &_thr._id));
         created = (_thr._handle != nullptr);
 #else
         pthread_t tid;
-        int result =
-            pthread_create(&tid, nullptr, _invoker_proc, _decay_copied.get());
+        int result = pthread_create(&tid, nullptr, _invoker_proc, _decay_copied.get());
         if (result == 0) {
             _thr._handle = tid;
             _thr._id = static_cast<thread_id_t>(tid);

@@ -19,10 +19,8 @@ struct _is_referenceable_impl {
 
 template <class Tp>
 struct is_referenceable
-    : integral_constant<
-          bool,
-          _IsNotSame<decltype(detail::_is_referenceable_impl::_test<Tp>(0)),
-                     false_type>::value> {};
+    : integral_constant<bool, _IsNotSame<decltype(detail::_is_referenceable_impl::_test<Tp>(0)),
+                                         false_type>::value> {};
 template <class Tp>
 inline constexpr bool is_referenceable_v = is_referenceable<Tp>::value;
 

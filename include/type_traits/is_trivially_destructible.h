@@ -6,12 +6,10 @@
 namespace jstl {
 
 template <class Tp>
-struct is_trivially_destructible
-    : integral_constant<bool, __is_trivially_destructible(Tp)> {};
+struct is_trivially_destructible : integral_constant<bool, __is_trivially_destructible(Tp)> {};
 
 template <class Tp>
-inline constexpr bool is_trivially_destructible_v =
-    is_trivially_destructible<Tp>::value;
+inline constexpr bool is_trivially_destructible_v = is_trivially_destructible<Tp>::value;
 
 }  // namespace jstl
 

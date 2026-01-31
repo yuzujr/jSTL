@@ -8,12 +8,10 @@
 namespace jstl {
 
 template <class Tp>
-struct is_void
-    : bool_constant<is_same<typename remove_cv<Tp>::type, void>::value> {};
+struct is_void : bool_constant<is_same<typename remove_cv<Tp>::type, void>::value> {};
 
 template <class Tp>
-inline constexpr bool is_void_v =
-    is_same<typename remove_cv<Tp>::type, void>::value;
+inline constexpr bool is_void_v = is_same<typename remove_cv<Tp>::type, void>::value;
 
 }  // namespace jstl
 

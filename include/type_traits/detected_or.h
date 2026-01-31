@@ -5,8 +5,7 @@
 
 namespace jstl {
 
-template <class Default, class AlwaysVoid, template <class...> class Op,
-          class... Args>
+template <class Default, class AlwaysVoid, template <class...> class Op, class... Args>
 struct detected_or {
     using type = Default;
 };

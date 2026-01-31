@@ -36,14 +36,12 @@ auto end(const Cp& c) -> decltype(c.end()) {
 }
 
 template <class Cp>
-constexpr auto cbegin(const Cp& c) noexcept(noexcept(jstl::begin(c)))
-    -> decltype(jstl::begin(c)) {
+constexpr auto cbegin(const Cp& c) noexcept(noexcept(jstl::begin(c))) -> decltype(jstl::begin(c)) {
     return jstl::begin(c);
 }
 
 template <class Cp>
-constexpr auto cend(const Cp& c) noexcept(noexcept(jstl::end(c)))
-    -> decltype(jstl::end(c)) {
+constexpr auto cend(const Cp& c) noexcept(noexcept(jstl::end(c))) -> decltype(jstl::end(c)) {
     return jstl::end(c);
 }
 

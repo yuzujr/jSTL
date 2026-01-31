@@ -20,10 +20,8 @@ struct _decay {
 };
 template <class Up>
 struct _decay<Up, true> {
-    typedef conditional_t<is_array<Up>::value,
-                          add_pointer_t<remove_extent_t<Up>>,
-                          conditional_t<is_function<Up>::value,
-                                        add_pointer_t<Up>, remove_cv_t<Up>>>
+    typedef conditional_t<is_array<Up>::value, add_pointer_t<remove_extent_t<Up>>,
+                          conditional_t<is_function<Up>::value, add_pointer_t<Up>, remove_cv_t<Up>>>
         type;
 };
 

@@ -16,8 +16,7 @@ public:
         std::lock(Mtxes...);
     }
 
-    explicit scoped_lock(jstl::adopt_lock_t, Mutexes&... Mtxes)
-        : My_Mutexes(Mtxes...) {}
+    explicit scoped_lock(jstl::adopt_lock_t, Mutexes&... Mtxes) : My_Mutexes(Mtxes...) {}
 
     ~scoped_lock() noexcept {
         jstl::apply(
@@ -42,8 +41,7 @@ public:
         _MyMutex.lock();
     }
 
-    explicit scoped_lock(jstl::adopt_lock_t, _Mutex& _Mtx) noexcept
-        : _MyMutex(_Mtx) {}
+    explicit scoped_lock(jstl::adopt_lock_t, _Mutex& _Mtx) noexcept : _MyMutex(_Mtx) {}
 
     ~scoped_lock() noexcept {
         _MyMutex.unlock();

@@ -3,6 +3,7 @@
 
 #include <initializer_list>
 
+#include "iterator/reverse_iterator.h"
 #include "memory/allocator.h"
 #include "memory/allocator_traits.h"
 #include "type_traits/is_nothrow_constructible.h"
@@ -12,19 +13,18 @@ namespace jstl {
 template <class T, class Allocator = allocator<T> >
 class vector {
 public:
-    typedef T value_type;
-    typedef Allocator allocator_type;
-    typedef value_type& reference;
-    typedef const value_type& const_reference;
-    typedef typename allocator_traits<allocator_type>::size_type size_type;
-    typedef typename allocator_traits<allocator_type>::difference_type difference_type;
-    typedef typename allocator_traits<allocator_type>::pointer pointer;
-    typedef typename allocator_traits<allocator_type>::const_pointer const_pointer;
-    typedef pointer iterator;
-    typedef const_pointer const_iterator;
-    // todo: reverse_iterator
-    // typedef std::reverse_iterator<iterator> reverse_iterator;
-    // typedef std::reverse_iterator<const_iterator> const_reverse_iterator;
+    using value_type = T;
+    using allocator_type = Allocator;
+    using reference = value_type&;
+    using const_reference = const value_type&;
+    using size_type = typename allocator_traits<allocator_type>::size_type;
+    using difference_type = typename allocator_traits<allocator_type>::difference_type;
+    using pointer = typename allocator_traits<allocator_type>::pointer;
+    using const_pointer = typename allocator_traits<allocator_type>::const_pointer;
+    using iterator = pointer;
+    using const_iterator = const_pointer;
+    using reverse_iterator = jstl::reverse_iterator<iterator>;
+    using const_reverse_iterator = jstl::reverse_iterator<const_iterator>;
 
     vector() noexcept(is_nothrow_default_constructible<allocator_type>::value);
     explicit vector(const allocator_type&);
@@ -58,15 +58,15 @@ public:
     iterator end() noexcept;
     const_iterator end() const noexcept;
 
-    // reverse_iterator rbegin() noexcept;
-    // const_reverse_iterator rbegin() const noexcept;
-    // reverse_iterator rend() noexcept;
-    // const_reverse_iterator rend() const noexcept;
+    reverse_iterator rbegin() noexcept;
+    const_reverse_iterator rbegin() const noexcept;
+    reverse_iterator rend() noexcept;
+    const_reverse_iterator rend() const noexcept;
 
     const_iterator cbegin() const noexcept;
     const_iterator cend() const noexcept;
-    // const_reverse_iterator crbegin() const noexcept;
-    // const_reverse_iterator crend() const noexcept;
+    const_reverse_iterator crbegin() const noexcept;
+    const_reverse_iterator crend() const noexcept;
 
     size_type size() const noexcept;
     size_type max_size() const noexcept;

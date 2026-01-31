@@ -5,8 +5,8 @@
 
 namespace jstl {
 
-template <class Category, class Tp, class Distance = ptrdiff_t,
-          class Pointer = Tp*, class Reference = Tp&>
+template <class Category, class Tp, class Distance = ptrdiff_t, class Pointer = Tp*,
+          class Reference = Tp&>
 struct iterator {
     typedef Tp value_type;
     typedef Distance difference_type;

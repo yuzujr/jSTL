@@ -5,5 +5,6 @@
 #include "iterator/advance.h"
 #include "iterator/iterator.h"
 #include "iterator/iterator_traits.h"
+#include "iterator/reverse_iterator.h"
 
 #endif

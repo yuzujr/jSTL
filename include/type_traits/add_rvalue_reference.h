@@ -25,8 +25,7 @@ struct add_rvalue_reference {
 };
 
 template <class Tp>
-using add_rvalue_reference_t =
-    typename detail::_add_rvalue_reference_impl<Tp>::type;
+using add_rvalue_reference_t = typename detail::_add_rvalue_reference_impl<Tp>::type;
 
 }  // namespace jstl
 

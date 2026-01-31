@@ -11,17 +11,13 @@ template <class Ap, class Bp>
 using _CopyConst = _If<is_const_v<Ap>, const Bp, Bp>;
 
 template <class Ap, class Bp>
-using _OverrideRef =
-    _If<is_rvalue_reference_v<Ap>, remove_reference_t<Bp>&&, Bp&>;
+using _OverrideRef = _If<is_rvalue_reference_v<Ap>, remove_reference_t<Bp>&&, Bp&>;
 
 template <class Ap, class Bp>
-using _ForwardLike =
-    _OverrideRef<Ap&&,
-                 _CopyConst<remove_reference_t<Ap>, remove_reference_t<Bp>>>;
+using _ForwardLike = _OverrideRef<Ap&&, _CopyConst<remove_reference_t<Ap>, remove_reference_t<Bp>>>;
 
 template <class Tp, class Up>
-[[nodiscard]] constexpr auto forward_like(Up&& ux) noexcept
-    -> _ForwardLike<Tp, Up> {
+[[nodiscard]] constexpr auto forward_like(Up&& ux) noexcept -> _ForwardLike<Tp, Up> {
     return static_cast<_ForwardLike<Tp, Up>>(ux);
 }
 

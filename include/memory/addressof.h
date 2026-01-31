@@ -7,15 +7,12 @@
 namespace jstl {
 
 template <class Tp>
-typename enable_if<is_object<Tp>::value, Tp*>::type addressof(
-    Tp& arg) noexcept {
-    return reinterpret_cast<Tp*>(
-        &const_cast<char&>(reinterpret_cast<const volatile char&>(arg)));
+typename enable_if<is_object<Tp>::value, Tp*>::type addressof(Tp& arg) noexcept {
+    return reinterpret_cast<Tp*>(&const_cast<char&>(reinterpret_cast<const volatile char&>(arg)));
 }
 
 template <class Tp>
-typename enable_if<!is_object<Tp>::value, Tp*>::type addressof(
-    Tp& arg) noexcept {
+typename enable_if<!is_object<Tp>::value, Tp*>::type addressof(Tp& arg) noexcept {
     return &arg;
 }
 

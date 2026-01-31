@@ -8,32 +8,26 @@
 namespace jstl {
 
 template <class Tp, class Arg>
-struct is_nothrow_assignable
-    : public integral_constant<bool, __is_nothrow_assignable(Tp, Arg)> {};
+struct is_nothrow_assignable : public integral_constant<bool, __is_nothrow_assignable(Tp, Arg)> {};
 
 template <class Tp, class Arg>
-inline constexpr bool is_nothrow_assignable_v =
-    __is_nothrow_assignable(Tp, Arg);
+inline constexpr bool is_nothrow_assignable_v = __is_nothrow_assignable(Tp, Arg);
 
 template <class Tp>
 struct is_nothrow_copy_assignable
-    : public integral_constant<bool, __is_nothrow_assignable(
-                                         add_lvalue_reference_t<Tp>,
-                                         add_lvalue_reference_t<const Tp>)> {};
+    : public integral_constant<bool, __is_nothrow_assignable(add_lvalue_reference_t<Tp>,
+                                                             add_lvalue_reference_t<const Tp>)> {};
 
 template <class Tp>
-inline constexpr bool is_nothrow_copy_assignable_v =
-    is_nothrow_copy_assignable<Tp>::value;
+inline constexpr bool is_nothrow_copy_assignable_v = is_nothrow_copy_assignable<Tp>::value;
 
 template <class Tp>
 struct is_nothrow_move_assignable
-    : public integral_constant<bool, __is_nothrow_assignable(
-                                         add_lvalue_reference_t<Tp>,
-                                         add_rvalue_reference_t<Tp>)> {};
+    : public integral_constant<bool, __is_nothrow_assignable(add_lvalue_reference_t<Tp>,
+                                                             add_rvalue_reference_t<Tp>)> {};
 
 template <class Tp>
-inline constexpr bool is_nothrow_move_assignable_v =
-    is_nothrow_move_assignable<Tp>::value;
+inline constexpr bool is_nothrow_move_assignable_v = is_nothrow_move_assignable<Tp>::value;
 
 }  // namespace jstl
 

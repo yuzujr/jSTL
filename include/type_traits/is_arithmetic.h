@@ -9,8 +9,7 @@ namespace jstl {
 
 template <class Tp>
 struct is_arithmetic
-    : integral_constant<bool, is_integral<Tp>::value ||
-                                  is_floating_point<Tp>::value> {};
+    : integral_constant<bool, is_integral<Tp>::value || is_floating_point<Tp>::value> {};
 
 template <class Tp>
 inline constexpr bool is_arithmetic_v = is_arithmetic<Tp>::value;

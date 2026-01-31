@@ -10,11 +10,9 @@
 namespace jstl {
 
 template <class Tp>
-struct is_null_pointer
-    : integral_constant<bool, is_same_v<__remove_cv(Tp), std::nullptr_t>> {};
+struct is_null_pointer : integral_constant<bool, is_same_v<__remove_cv(Tp), std::nullptr_t>> {};
 template <class Tp>
-inline constexpr bool is_null_pointer_v =
-    is_same_v<__remove_cv(Tp), std::nullptr_t>;
+inline constexpr bool is_null_pointer_v = is_same_v<__remove_cv(Tp), std::nullptr_t>;
 
 }  // namespace jstl
 
