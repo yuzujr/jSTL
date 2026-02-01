@@ -17,14 +17,14 @@ template <class InputIt, class Size, class NoThrowForwardIt>
 NoThrowForwardIt uninitialized_copy_n(InputIt first, Size n, NoThrowForwardIt d_first) {
     using T = typename std::iterator_traits<NoThrowForwardIt>::value_type;
     if constexpr (is_trivially_copyable_v<T>) {
-        std::memmove(static_cast<void*>(addressof(*d_first)),
-                     static_cast<const void*>(addressof(*first)), sizeof(T) * n);
+        std::memmove(static_cast<void*>(jstl::addressof(*d_first)),
+                     static_cast<const void*>(jstl::addressof(*first)), sizeof(T) * n);
         return d_first + n;
     } else {
         NoThrowForwardIt current = d_first;
         try {
             for (; n > 0; ++first, (void)++current, --n) {
-                ::new (static_cast<void*>(addressof(*current))) T(*first);
+                ::new (static_cast<void*>(jstl::addressof(*current))) T(*first);
             }
         } catch (...) {
             for (; d_first != current; ++d_first) {
@@ -39,7 +39,7 @@ NoThrowForwardIt uninitialized_copy_n(InputIt first, Size n, NoThrowForwardIt d_
 // beginning at d_first
 template <class InputIt, class NoThrowForwardIt>
 NoThrowForwardIt uninitialized_copy(InputIt first, InputIt last, NoThrowForwardIt d_first) {
-    return uninitialized_copy_n(first, last - first, d_first);
+    return jstl::uninitialized_copy_n(first, last - first, d_first);
 }
 
 // Fills an uninitialized memory area beginning at first with n copies of value
@@ -47,13 +47,16 @@ template <class NoThrowForwardIt, class Size, class T>
 NoThrowForwardIt uninitialized_fill_n(NoThrowForwardIt first, Size n, const T& value) {
     using ValueType = typename std::iterator_traits<NoThrowForwardIt>::value_type;
     if constexpr (is_trivially_copyable_v<ValueType>) {
-        std::memset(static_cast<void*>(addressof(*first)), value, sizeof(ValueType) * n);
+        for (Size i = 0; i < n; ++i) {
+            std::memcpy(static_cast<void*>(jstl::addressof(*(first + i))),
+                        static_cast<const void*>(jstl::addressof(value)), sizeof(ValueType));
+        }
         return first + n;
     } else {
         NoThrowForwardIt current = first;
         try {
             for (; n > 0; --n, ++current) {
-                ::new (static_cast<void*>(addressof(*current))) ValueType(value);
+                ::new (static_cast<void*>(jstl::addressof(*current))) ValueType(value);
             }
         } catch (...) {
             for (; first != current; ++first) {
@@ -69,7 +72,7 @@ NoThrowForwardIt uninitialized_fill_n(NoThrowForwardIt first, Size n, const T& v
 // with copies of value
 template <class NoThrowForwardIt, class T>
 void uninitialized_fill(NoThrowForwardIt first, NoThrowForwardIt last, const T& value) {
-    uninitialized_fill_n(first, last - first, value);
+    jstl::uninitialized_fill_n(first, last - first, value);
 }
 
 /*
@@ -89,14 +92,14 @@ template <class InputIt, class Size, class NoThrowForwardIt>
 NoThrowForwardIt uninitialized_move_n(InputIt first, Size n, NoThrowForwardIt d_first) {
     using T = typename std::iterator_traits<NoThrowForwardIt>::value_type;
     if constexpr (is_trivially_copyable_v<T>) {
-        std::memmove(static_cast<void*>(addressof(*d_first)),
-                     static_cast<const void*>(addressof(*first)), sizeof(T) * n);
+        std::memmove(static_cast<void*>(jstl::addressof(*d_first)),
+                     static_cast<const void*>(jstl::addressof(*first)), sizeof(T) * n);
         return d_first + n;
     } else {
         NoThrowForwardIt current = d_first;
         try {
             for (; n > 0; ++first, (void)++current, --n) {
-                ::new (static_cast<void*>(addressof(*current))) T(std::move(*first));
+                ::new (static_cast<void*>(jstl::addressof(*current))) T(std::move(*first));
             }
         } catch (...) {
             for (; d_first != current; ++d_first) {
@@ -111,7 +114,7 @@ NoThrowForwardIt uninitialized_move_n(InputIt first, Size n, NoThrowForwardIt d_
 // moves a range of objects to an uninitialized area of memory
 template <class InputIt, class NoThrowForwardIt>
 NoThrowForwardIt uninitialized_move(InputIt first, InputIt last, NoThrowForwardIt d_first) {
-    return uninitialized_move_n(first, last - first, d_first);
+    return jstl::uninitialized_move_n(first, last - first, d_first);
 }
 
 // constructs objects by default-initialization in an uninitialized area of
@@ -122,7 +125,7 @@ void uninitialized_default_construct_n(NoThrowForwardIt first, Size n) {
     NoThrowForwardIt current = first;
     try {
         for (; n > 0; --n, ++current) {
-            ::new (static_cast<void*>(addressof(*current))) ValueType;
+            ::new (static_cast<void*>(jstl::addressof(*current))) ValueType;
         }
     } catch (...) {
         for (; first != current; ++first) {
@@ -136,7 +139,7 @@ void uninitialized_default_construct_n(NoThrowForwardIt first, Size n) {
 // memory, defined by a range
 template <class NoThrowForwardIt>
 void uninitialized_default_construct(NoThrowForwardIt first, NoThrowForwardIt last) {
-    uninitialized_default_construct_n(first, last - first);
+    jstl::uninitialized_default_construct_n(first, last - first);
 }
 
 // constructs objects by value-initialization in an uninitialized area of
@@ -147,7 +150,7 @@ void uninitialized_value_construct_n(NoThrowForwardIt first, Size n) {
     NoThrowForwardIt current = first;
     try {
         for (; n > 0; --n, ++current) {
-            ::new (static_cast<void*>(addressof(*current))) ValueType();
+            ::new (static_cast<void*>(jstl::addressof(*current))) ValueType();
         }
     } catch (...) {
         for (; first != current; ++first) {
@@ -161,7 +164,7 @@ void uninitialized_value_construct_n(NoThrowForwardIt first, Size n) {
 // memory, defined by a range
 template <class NoThrowForwardIt>
 void uninitialized_value_construct(NoThrowForwardIt first, NoThrowForwardIt last) {
-    uninitialized_value_construct_n(first, last - first);
+    jstl::uninitialized_value_construct_n(first, last - first);
 }
 
 // Destroys at
@@ -169,7 +172,7 @@ template <class T>
 void destroy_at(T* p) {
     if constexpr (is_array_v<T>) {
         for (auto& elem : *p) {
-            (destroy_at)(addressof(elem));
+            (jstl::destroy_at)(jstl::addressof(elem));
         }
     } else {
         p->~T();
@@ -182,7 +185,7 @@ void destroy_n(NoThrowForwardIt first, Size n) {
     using ValueType = typename std::iterator_traits<NoThrowForwardIt>::value_type;
     if constexpr (!is_trivially_destructible_v<ValueType>) {
         for (; n > 0; --n, ++first) {
-            destroy_at(addressof(*first));
+            jstl::destroy_at(jstl::addressof(*first));
         }
     }
 }
@@ -190,7 +193,7 @@ void destroy_n(NoThrowForwardIt first, Size n) {
 // Destroys the elements in the range [first, last)
 template <class NoThrowForwardIt>
 void destroy(NoThrowForwardIt first, NoThrowForwardIt last) {
-    destroy_n(first, last - first);
+    jstl::destroy_n(first, last - first);
 }
 
 }  // namespace jstl
