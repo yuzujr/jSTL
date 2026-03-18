@@ -5,6 +5,7 @@
 #include <iterator>
 
 #include "memory/addressof.h"
+#include "utility/move.h"
 #include "type_traits/is_array.h"
 #include "type_traits/is_trivially_copyable.h"
 #include "type_traits/is_trivially_destructible.h"
@@ -99,7 +100,7 @@ NoThrowForwardIt uninitialized_move_n(InputIt first, Size n, NoThrowForwardIt d_
         NoThrowForwardIt current = d_first;
         try {
             for (; n > 0; ++first, (void)++current, --n) {
-                ::new (static_cast<void*>(jstl::addressof(*current))) T(std::move(*first));
+                ::new (static_cast<void*>(jstl::addressof(*current))) T(jstl::move(*first));
             }
         } catch (...) {
             for (; d_first != current; ++d_first) {

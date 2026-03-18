@@ -1,4 +1,6 @@
 .cache/
+.direnv/
 .vscode/
 .xmake/
 build/
+.envrc
